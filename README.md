@@ -63,3 +63,9 @@ $ chmod +c ./run_docs.sh
 $ ./run_docs.sh
 ```
 The docs will be available at [http://localhost:8000](http://localhost:8000)
+
+## Development
+To run automated tests:
+```
+$ pytest
+```
