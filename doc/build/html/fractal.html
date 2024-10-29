@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fractal package &#8212; Documentation Fractal 1.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=7a28dfa3"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="fractal" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="fractal-package">
+<h1>fractal package<a class="headerlink" href="#fractal-package" title="Lien vers cette rubrique">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Lien vers cette rubrique">¶</a></h2>
+</section>
+<section id="module-fractal.fractal">
+<span id="fractal-fractal-module"></span><h2>fractal.fractal module<a class="headerlink" href="#module-fractal.fractal" title="Lien vers cette rubrique">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.is_in_julia">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">is_in_julia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/fractal/fractal.html#is_in_julia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.is_in_julia" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Determine whether a complex point is in the Julia set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>complex</em>) – A complex number representing the point in the complex plane to be tested.</p></li>
+<li><p><strong>c</strong> (<em>complex</em>) – A constant complex parameter that defines the specific Julia set.</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of iterations to perform. Default is 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the point <cite>z</cite> is within the Julia set for the given <cite>c</cite>, False otherwise.</p>
+</dd>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Exemples</p>
+<p>Check if a point is in the Julia set:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_julia</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">+</span> <span class="mf">0.156</span><span class="n">j</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_julia</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.355</span> <span class="o">+</span> <span class="mf">0.355</span><span class="n">j</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_julia</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.355</span> <span class="o">+</span> <span class="mf">0.355</span><span class="n">j</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_julia</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.3</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.355</span> <span class="o">+</span> <span class="mf">0.355</span><span class="n">j</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.is_in_mandelbrot">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">is_in_mandelbrot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/fractal/fractal.html#is_in_mandelbrot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.is_in_mandelbrot" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Determine whether a complex point is in the Mandelbrot set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> (<em>complex</em>) – A complex number representing the point in the complex plane to be tested.</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of iterations to perform. Default is 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the point <cite>c</cite> is within the Mandelbrot set, False otherwise.</p>
+</dd>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Exemples</p>
+<p>Check if a point is in the Mandelbrot set:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_mandelbrot</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_mandelbrot</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span> <span class="o">+</span> <span class="mf">0.3</span><span class="n">j</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_mandelbrot</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_in_mandelbrot</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span><span class="n">j</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.julia_sequence">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">julia_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/fractal/fractal.html#julia_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.julia_sequence" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Generate an infinite sequence for the Julia set starting from a given point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>complex</em>) – The initial value for <cite>z</cite>, typically a complex number representing
+the starting point of the sequence.</p></li>
+<li><p><strong>c</strong> (<em>complex</em>) – A constant complex parameter that remains fixed throughout the sequence.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>A generator that yields the values of the sequence.</p>
+</dd>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
+<dd class="field-odd"><p>generator</p>
+</dd>
+</dl>
+<p class="rubric">Exemples</p>
+<p>Generate the first few terms in a Julia sequence:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gen</span> <span class="o">=</span> <span class="n">julia_sequence</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">+</span> <span class="mf">0.156</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="go">[0j, (-0.8+0.156j), (-0.18433599999999994-0.09360000000000002j), (-0.7747811991040001+0.1905076992j), (-0.23600727696944535-0.1392035672494403j)]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gen</span> <span class="o">=</span> <span class="n">julia_sequence</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">1.0</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.355</span> <span class="o">+</span> <span class="mf">0.355</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="go">[(1+1j), (0.355+2.355j), (-5.0649999999999995+2.02705j)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.mandelbrot_sequence">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">mandelbrot_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/fractal/fractal.html#mandelbrot_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.mandelbrot_sequence" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Generate an infinite sequence for the Mandelbrot set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>c</strong> (<em>complex</em>) – A complex number representing a point in the complex plane.</p>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>A generator that yields the values of the sequence.</p>
+</dd>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
+<dd class="field-odd"><p>generator</p>
+</dd>
+</dl>
+<p class="rubric">Exemples</p>
+<p>Generate the first few terms in a Mandelbrot sequence:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gen</span> <span class="o">=</span> <span class="n">mandelbrot_sequence</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span> <span class="o">+</span> <span class="mf">0.3</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="go">[0, (-0.7+0.3j), (-0.30000000000000004-0.12j), (-0.6244+0.372j), (-0.44850864-0.16455359999999997j)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.plot_julia">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">plot_julia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.8</span> <span class="pre">+</span> <span class="pre">0.156j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'julia.png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fractal/fractal.html#plot_julia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.plot_julia" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Generate and save an image of the Julia set for a specified complex parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> (<em>complex</em><em>, </em><em>optional</em>) – The complex parameter defining the specific Julia set. Default is -0.8 + 0.156j.</p></li>
+<li><p><strong>zmin</strong> (<em>float</em><em>, </em><em>optional</em>) – The minimum value for both the real and imaginary components of the complex plane.
+Default is -2.</p></li>
+<li><p><strong>zmax</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum value for both the real and imaginary components of the complex plane.
+Default is 2.</p></li>
+<li><p><strong>pixel_size</strong> (<em>float</em><em>, </em><em>optional</em>) – The pixel resolution of the image. Smaller values increase the detail level
+but also increase computation time. Default is 1e-2.</p></li>
+<li><p><strong>output</strong> (<em>str</em><em>, </em><em>optional</em>) – The filename (including path if needed) where the Julia set image will be saved.
+Default is “julia.png”.</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of iterations used to determine if points are in the Julia set.
+Higher values increase the accuracy of the fractal but may increase computation time.
+Default is 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function saves the Julia set plot as an image file and does not return any value.</p>
+</dd>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.plot_mandelbrot">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">plot_mandelbrot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zmin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mandelbrot.png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/fractal/fractal.html#plot_mandelbrot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.plot_mandelbrot" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Generate and save an image of the Mandelbrot set over a specified range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zmin</strong> (<em>float</em><em>, </em><em>optional</em>) – The minimum value for both real and imaginary components of the complex plane.
+Default is -2.</p></li>
+<li><p><strong>zmax</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum value for both real and imaginary components of the complex plane.
+Default is 2.</p></li>
+<li><p><strong>pixel_size</strong> (<em>float</em><em>, </em><em>optional</em>) – The pixel resolution of the image. Smaller values increase the detail level
+but also increase computation time. Default is 1e-2.</p></li>
+<li><p><strong>output</strong> (<em>str</em><em>, </em><em>optional</em>) – The filename (including path if needed) where the Mandelbrot image will be saved.
+Default is “mandelbrot.png”.</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of iterations used to determine if points are in the Mandelbrot set.
+Higher values increase the accuracy of the fractal but may increase computation time.
+Default is 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function saves the Mandelbrot plot as an image file and does not return any value.</p>
+</dd>
+<dt class="field-odd">Type renvoyé<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fractal.fractal.sequence">
+<span class="sig-prename descclassname"><span class="pre">fractal.fractal.</span></span><span class="sig-name descname"><span class="pre">sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/fractal/fractal.html#sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fractal.fractal.sequence" title="Lien vers cette définition">¶</a></dt>
+<dd><p>Generate an infinite sequence based on the formula <span class="math notranslate nohighlight">\(z = z^2 + c\)</span>.</p>
+<p>This function is commonly used as a basis for generating Mandelbrot and Julia
+fractal sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>complex</em>) – The initial value for <cite>z</cite>, typically a complex number.</p></li>
+<li><p><strong>c</strong> (<em>complex</em>) – A constant complex parameter that remains fixed throughout the sequence.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>complex</em> – The next value in the sequence.</p>
+</dd>
+</dl>
+<p class="rubric">Exemples</p>
+<p>Generate the first few values in a sequence for the Julia set:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gen</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">+</span> <span class="mf">0.156</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="go">[0j, (-0.8+0.156j), (-0.18433599999999994-0.09360000000000002j), (-0.7747811991040001+0.1905076992j), (-0.23600727696944535-0.1392035672494403j)]</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function does not have a stopping condition and will continue indefinitely.</p></li>
+<li><p>It can be used to determine whether a point belongs to the Mandelbrot or Julia sets
+based on whether the generated sequence converges or diverges.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-fractal">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-fractal" title="Lien vers cette rubrique">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Fractal</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Fractal Generation Library</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">fractal</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">fractal package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">fractal</a><ul>
+      <li>Previous: <a href="modules.html" title="Chapitre précédent">fractal</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Lucas Noronha.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/fractal.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

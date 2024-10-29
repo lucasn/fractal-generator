@@ -1,0 +1,3 @@
+# Fractal Generation Library
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non dui scelerisque, egestas libero et, sagittis diam. Proin dapibus, arcu sed ullamcorper vulputate, quam ligula congue augue, in hendrerit massa elit nec dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque arcu diam, varius quis maximus sed, sagittis id libero. Maecenas ultrices nisi nunc, non dignissim ex hendrerit vel. Duis quam metus, vehicula nec aliquet quis, euismod vel diam. Integer condimentum leo nec semper venenatis. Sed in mi sed tellus venenatis blandit. Integer quis est orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
