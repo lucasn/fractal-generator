@@ -5,6 +5,7 @@ from time import time
 import os
 from itertools import repeat
 from collections.abc import Generator
+import logging
 
 BOUND = 2
 
@@ -372,8 +373,6 @@ def _plot_fractal(output_filename: str, mask: np.ndarray) -> None:
         This function saves the fractal plot as an image file and does not return any value.
     """
 
-    print(output_filename)
-
     # Find indices where the matrix is True
     true_indices = np.argwhere(mask)
 
@@ -389,7 +388,11 @@ def _plot_fractal(output_filename: str, mask: np.ndarray) -> None:
     plt.xlim(y_min - 0.5, y_max + 0.5)
     plt.ylim(x_max + 0.5, x_min - 0.5)  # Invert y-axis for correct orientation
 
-    plt.savefig(f"{os.getcwd()}/{output_filename}", bbox_inches='tight', dpi=300)
+    output_filepath = f"{os.getcwd()}/{output_filename}"
+
+    logging.info(f'Output file saved to {output_filepath}')
+
+    plt.savefig(output_filepath, bbox_inches='tight', dpi=300)
 
 
 if __name__ == '__main__':

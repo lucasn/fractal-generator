@@ -2,8 +2,17 @@ import argparse
 from time import time
 from fractal.fractal import plot_mandelbrot, plot_julia
 from copy import deepcopy
+import logging
+
 
 def main():
+    logging.basicConfig(
+        format='%(asctime)s %(message)s', 
+        datefmt='%m/%d/%Y %I:%M:%S %p',
+        handlers=[logging.StreamHandler()],
+        level=logging.INFO
+    )
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-o', '--output', type=str, help='Output path/name for the plot')
@@ -32,7 +41,7 @@ def main():
     else:
         plot_julia(**params)
 
-    print(f'Time: {time() - start}')
+    logging.info(f'Execution Time: {time() - start} s')
 
 if __name__=="__main__":
     main()
