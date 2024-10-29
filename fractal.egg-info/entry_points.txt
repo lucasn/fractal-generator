@@ -1,3 +1,0 @@
-[console_scripts]
-JuliaPlot = fractal.__main__:main
-MandelbrotPlot = fractal.__main__:main
