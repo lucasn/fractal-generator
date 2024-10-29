@@ -9,6 +9,9 @@ A simple Python library for generating and visualizing Mandelbrot and Julia frac
 
 ## Quick Start
 
+> [!WARNING]
+> Python 3.12.2 required
+
 Install the library:
 ```bash
 $ pip install .
