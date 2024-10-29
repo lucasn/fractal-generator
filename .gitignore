@@ -1,4 +1,4 @@
 fractal.egg-info/
-build/
+**/build/
 **/__pycache__/
 *.png
