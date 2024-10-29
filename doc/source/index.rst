@@ -3,12 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Fractal documentation
-=====================
+Fractal Genertor Documentation
+==============================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+A simple Python library for generating and visualizing Mandelbrot and Julia fractals. With adjustable settings for resolution, iteration depth, and complex plane boundaries, this library enables you to create high-quality images of intricate fractal patterns with ease.
 
 
 .. toctree::
