@@ -1,14 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from multiprocessing import Pool
-from time import time
 import os
 from itertools import repeat
 from collections.abc import Generator
 import logging
+from numba import jit
 
 BOUND = 2
 
+@jit
 def sequence(z: complex, c: complex) -> Generator[complex]:
     """
     Generate an infinite sequence based on the formula :math:`z = z^2 + c`.
@@ -46,7 +47,7 @@ def sequence(z: complex, c: complex) -> Generator[complex]:
         yield z
         z = z**2 + c
 
-
+@jit
 def mandelbrot_sequence(c: complex) -> Generator[complex]:
     """
     Generate an infinite sequence for the Mandelbrot set.
@@ -67,11 +68,11 @@ def mandelbrot_sequence(c: complex) -> Generator[complex]:
 
     >>> gen = mandelbrot_sequence(-0.7 + 0.3j)
     >>> [next(gen) for _ in range(5)]
-    [0, (-0.7+0.3j), (-0.30000000000000004-0.12j), (-0.6244+0.372j), (-0.44850864-0.16455359999999997j)]
+    [0j, (-0.7+0.3j), (-0.30000000000000004-0.12j), (-0.6244+0.372j), (-0.44850864-0.16455359999999997j)]
     """ 
     return sequence(0,c)
 
-
+@jit
 def is_in_mandelbrot(c: complex, max_iter: int=100) -> bool:
     """
     Determine whether a complex point is in the Mandelbrot set.
@@ -115,6 +116,36 @@ def is_in_mandelbrot(c: complex, max_iter: int=100) -> bool:
     return bool(np.abs(z) < BOUND)
 
 
+@jit
+def _mandelbrot_mask(c_values, max_iter):
+    """
+    Generate a Mandelbrot set membership mask for a list of complex values.
+
+    Parameters
+    ----------
+    c_values : list of complex
+        A list of complex numbers representing points in the complex plane to test 
+        for Mandelbrot set membership.
+    max_iter : int
+        The maximum number of iterations used to determine if each point in `c_values` 
+        is in the Mandelbrot set. Higher values yield a more accurate determination 
+        but increase computation time.
+
+    Returns
+    -------
+    list of bool
+        A list of boolean values, where each value corresponds to whether the 
+        corresponding complex number in `c_values` is part of the Mandelbrot set.
+
+    Examples
+    --------
+    >>> c_values = [0+0j, -1+0j, 0.3+0.5j]
+    >>> _mandelbrot_mask(c_values, max_iter=100)
+    [True, True, True]
+    """
+    return [is_in_mandelbrot(c, max_iter) for c in c_values]
+
+
 def _generate_mandelbrot_mask(zmin: complex, zmax: complex, n_points: int, max_iter: int) -> np.ndarray:
     """
     Generate a mask indicating points in the Mandelbrot set within a specified range.
@@ -145,14 +176,13 @@ def _generate_mandelbrot_mask(zmin: complex, zmax: complex, n_points: int, max_i
     """
     real_range = np.linspace(zmin, zmax, n_points)
     imag_range = np.linspace(zmin, zmax, n_points)
-
     real_matrix, imag_matrix = np.meshgrid(real_range, imag_range)
+
     c_matrix = real_matrix + 1j*imag_matrix
     original_shape = c_matrix.shape
     c_values = np.reshape(c_matrix, -1)
 
-    with Pool() as pool:
-        c_values_mask = pool.starmap(is_in_mandelbrot, zip(c_values, repeat(max_iter)))
+    c_values_mask = _mandelbrot_mask(c_values, max_iter)
 
     c_mask_matrix = np.reshape(c_values_mask, original_shape)
 
@@ -197,7 +227,7 @@ def plot_mandelbrot(
     mask = _generate_mandelbrot_mask(zmin, zmax, n_points, max_iter)
     _plot_fractal(output, mask)
 
-
+@jit
 def julia_sequence(z: complex,c :complex) -> Generator[complex]:
     """
     Generate an infinite sequence for the Julia set starting from a given point.
@@ -229,7 +259,7 @@ def julia_sequence(z: complex,c :complex) -> Generator[complex]:
     """
     return sequence(z,c)
 
-
+@jit
 def is_in_julia(z: complex, c: complex, max_iter :int=100) -> bool:
     """
     Determine whether a complex point is in the Julia set.
@@ -275,6 +305,39 @@ def is_in_julia(z: complex, c: complex, max_iter :int=100) -> bool:
     return bool(np.abs(z) < BOUND)
 
 
+@jit
+def _julia_mask(z_values, c, max_iter):
+    """
+    Generate a Julia set membership mask for a list of complex values.
+
+    Parameters
+    ----------
+    z_values : list of complex
+        A list of complex numbers representing points in the complex plane to test 
+        for Julia set membership.
+    c : complex
+        The complex parameter that defines the specific Julia set. 
+    max_iter : int
+        The maximum number of iterations used to determine if each point in `z_values` 
+        is in the Julia set. Higher values yield a more accurate determination 
+        but increase computation time.
+
+    Returns
+    -------
+    list of bool
+        A list of boolean values, where each value corresponds to whether the 
+        corresponding complex number in `z_values` is part of the Julia set.
+
+    Examples
+    --------
+    >>> z_values = [0+0j, 0.3+0.5j, -0.7+0.2j]
+    >>> c = -0.8 + 0.156j
+    >>> _julia_mask(z_values, c, max_iter=100)
+    [True, False, False]
+    """
+    return [is_in_julia(z, c, max_iter) for z in z_values]
+
+
 def _generate_julia_mask(c: complex, z_min: float, z_max: float, n_points: int, max_iter: int) -> np.ndarray:
     """
     Generate a mask indicating points in the Julia set for a given constant.
@@ -313,8 +376,7 @@ def _generate_julia_mask(c: complex, z_min: float, z_max: float, n_points: int, 
     original_shape = z_matrix.shape
     z_values = np.reshape(z_matrix, -1)
 
-    with Pool() as pool:
-        z_values_mask = pool.starmap(is_in_julia, zip(z_values, repeat(c), repeat(max_iter)))
+    z_values_mask = _julia_mask(z_values, c, max_iter)
 
     z_mask_matrix = np.reshape(z_values_mask, original_shape)
 
